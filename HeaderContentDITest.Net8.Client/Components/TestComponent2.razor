@@ -1,0 +1,14 @@
+﻿@using RenderModeAutoDIBug.Client.Services;
+@using System.Diagnostics;
+<h3>TestComponent2</h3>
+
+@code {
+    [Inject]
+    public ITestService? TestService { get; set; }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Debug.WriteLine("TestComponent2.OnAfterRender");
+        base.OnAfterRender(firstRender);
+    }
+}

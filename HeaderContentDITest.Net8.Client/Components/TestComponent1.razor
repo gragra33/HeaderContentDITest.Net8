@@ -1,0 +1,25 @@
+﻿@using RenderModeAutoDIBug.Client.Services;
+@using System.Diagnostics;
+
+@if (_isServiceLoaded)
+{
+    <link rel="stylesheet" href="_content/HeaderContentDITest.Net8.Client/teststyle.css" />
+}
+
+@code {
+    [Inject]
+    public ITestService? TestService { get; set; }
+
+    private bool _isServiceLoaded;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Debug.WriteLine("TestComponent1.OnAfterRender");
+
+        if (!(firstRender & TestService is not null))
+            return;
+
+        _isServiceLoaded = true;
+        StateHasChanged();
+    }
+}
